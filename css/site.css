@@ -6,6 +6,14 @@
     --orange-color: orange;
 }
 
+.odd {
+    font-weight: 100;
+}
+
+.even {
+    font-weight: bold;
+}
+
 body{
     color:var(--dark-color);
 }
