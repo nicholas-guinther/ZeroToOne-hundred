@@ -56,17 +56,91 @@
             <div class="col-lg-8">
                 <pre class="line-numbers">
                     <code class="language-javascript">
-                        // Call HelloWorld
-                        function HelloWorld(){
-                             alert("Hello World!");
+                        // get the values from the UI
+                        // starts or controller function
+                        function getValues(){
+                            // get values from the page
+                            let startValue = document.getElementById("startValue").value;
+                            let endValue = document.getElementById("endValue").value;
+                            let numbers = [];
+                        
+                            // attempt to parse into integers
+                            startValue = parseInt(startValue);
+                            endValue = parseInt(endValue);
+                        
+                            if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                // call generateNumbers
+                                let numbers = generateNumbers(startValue, endValue);
+                                // call displayNumbers
+                                displayNumbers(numbers);
+                            } else {
+                                
+                                alert("You must enter integers");
+                                }
+                        
+                        }
+                        
+                        // generate numbers from startValue to the endValue
+                        // logic functions
+                        function generateNumbers(startValue, endValue){
+                        
+                            let numbers = [];
+                        
+                            // get all numbers from start to end
+                            for (let index = startValue; index <= endValue; index++) {
+                                numbers.push(index);
+                                
+                            }
+                        
+                            return numbers;
+                        }
+                        
+                        // display the numbers and mark the even numbers bold
+                        // display or view functions
+                        function displayNumbers(numbers){
+                        
+                            let templateRows = "";
+                            let className = "even"
+                        
+                            for (let index = 0; index < numbers.length; index++) {
+                        
+                                let number = numbers[index];
+                        
+                                if (number % 2 == 0){
+                        
+                                    className = "even";
+                        
+                                } else {
+                        
+                                    className = "odd";
+                                }
+                                // This does not render correctly with Prism see the source
+                                templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+                            }
+                        
+                            document.getElementById("results").innerHTML = templateRows;
                         }
                     </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                <p>The Code is structured in one function.</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays and alert with a message of "Hello World!"</p>
+                <p>The Code is structured in 3 function.</p>
+                <h5>getValues()</h5>
+                <p>Get Values is the function that is called when the user presses the <button type="button" class="btn btn-dark btn-large">Display Numbers</button> button. It is responsible for
+                    collecting the start value and end value from the page and initializing them into variables, initializing a numbers array,
+                    validating input to make sure that the inputs are in fact valid integers, alerting the user if invalid input is present, calling generateNumbers() function,
+                    and calling the display numbers function.
+                </p>
+                <h5>generateNumbers(startValue, endValue)</h5>
+                <p>Generate Numbers is the function responsible for taking two parameters, the start value and end value, and filling in all of
+                    the numbers in between. The function does this by using a for loop to push integer values into an array and then
+                    returning that array of numbers.
+                </p>
+                <h5>displayNumbers(numbers)</h5>
+                <p>The Display numbers function takes one parameter which is the numbers array. The function then initializes two variables,
+                    one called templateRows, which is a string that will be used to render the numers into HTML code and className variable
+                    which will be used to make the even numbers bold using CSS.
+                </p>
             </div>
         </div>
     </div>
